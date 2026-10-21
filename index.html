@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kancelaria restrukturyzacyjna - warianty</title>
+<style>
+  :root { --bg:#ECECEA; --ink:#1A1A1D; --muted:#5E5F64; --line:#C9C9C6; --on:#1A1A1D; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  header { position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line); padding:12px 20px; display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; justify-content:space-between; }
+  h1 { font-size:15px; font-weight:600; margin:0; }
+  .meta { color:var(--muted); font-size:13px; }
+  .tryb { display:flex; gap:0; border:1px solid var(--ink); }
+  .tryb button { font:inherit; font-size:14px; padding:8px 14px; min-height:40px; border:0; background:transparent; color:var(--ink); cursor:pointer; }
+  .tryb button[aria-pressed="true"] { background:var(--on); color:#fff; }
+  .tryb button:focus-visible { outline:2px solid var(--ink); outline-offset:2px; }
+  main { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px; padding:20px; align-items:start; }
+  .kol h2 { font-size:17px; margin:0 0 2px; }
+  .kol p { margin:0 0 10px; color:var(--muted); font-size:13px; min-height:38px; }
+  .kol a, .meta a { color:var(--ink); }
+  .ramka { background:#fff; border:1px solid var(--line); overflow:hidden; position:relative; }
+  .ramka iframe { border:0; display:block; position:absolute; top:0; left:0; transform-origin:0 0; background:#fff; }
+  body.telefon main { grid-template-columns:repeat(3, 375px); justify-content:center; }
+  @media (max-width: 900px) { main, body.telefon main { grid-template-columns:minmax(0,1fr); justify-content:stretch; } }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Kancelaria restrukturyzacyjna - plansza 3 wariantów</h1>
+    <div class="meta">Ta sama treść, różne kroje, kolory i układ. Projekt poglądowy: dane fikcyjne, zdjęcia poglądowe.</div>
+  </div>
+  <div class="tryb" role="group" aria-label="Szerokość podglądu">
+    <button type="button" data-tryb="komputer" aria-pressed="true">Komputer 1280 px</button>
+    <button type="button" data-tryb="telefon" aria-pressed="false">Telefon 375 px</button>
+  </div>
+</header>
+<main>
+  <section class="kol" data-plik="wariant-a.html">
+    <h2>A "Akta"</h2>
+    <p>Redakcyjna powaga. Brygada 1918 + Public Sans, zieleń. Linie tylko na danych. <a href="wariant-a.html" target="_blank">Pełny ekran</a></p>
+    <div class="ramka"><iframe title="Wariant A" src="wariant-a.html" loading="eager"></iframe></div>
+  </section>
+  <section class="kol" data-plik="wariant-b.html">
+    <h2>B "Tusz"</h2>
+    <p>Ta sama struktura, inny kolor i kroje. Source Serif 4 + IBM Plex Sans, fiolet tuszu. <a href="wariant-b.html" target="_blank">Pełny ekran</a></p>
+    <div class="ramka"><iframe title="Wariant B" src="wariant-b.html" loading="eager"></iframe></div>
+  </section>
+  <section class="kol" data-plik="wariant-c.html">
+    <h2>C "Apple wprost"</h2>
+    <p>Rytm apple.com: duża typografia, pełne pasy jasne i ciemne, sam grotesk. <a href="wariant-c.html" target="_blank">Pełny ekran</a></p>
+    <div class="ramka"><iframe title="Wariant C" src="wariant-c.html" loading="eager"></iframe></div>
+  </section>
+</main>
+<script>
+(function () {
+  var tryb = 'komputer';
+  var szer = { komputer: 1280, telefon: 375 };
+  function dopasuj(ramka) {
+    var f = ramka.querySelector('iframe');
+    var w = szer[tryb];
+    var skala = tryb === 'telefon' ? 1 : Math.min(1, ramka.clientWidth / w);
+    var h = 3000;
+    try {
+      var d = f.contentDocument;
+      if (d && d.documentElement) {
+        f.style.width = w + 'px';
+        f.style.height = '100px';
+        h = Math.max(d.documentElement.scrollHeight, d.body ? d.body.scrollHeight : 0);
+      }
+    } catch (e) {}
+    f.style.width = w + 'px';
+    f.style.height = h + 'px';
+    f.style.transform = skala < 1 ? 'scale(' + skala + ')' : 'none';
+    ramka.style.height = Math.ceil(h * skala) + 'px';
+    if (tryb === 'telefon') ramka.style.width = w + 'px'; else ramka.style.width = '';
+  }
+  function wszystkie() { document.querySelectorAll('.ramka').forEach(dopasuj); }
+  document.querySelectorAll('.ramka iframe').forEach(function (f) {
+    f.addEventListener('load', function () { dopasuj(f.parentNode); setTimeout(function(){ dopasuj(f.parentNode); }, 600); });
+  });
+  document.querySelectorAll('.tryb button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      tryb = b.getAttribute('data-tryb');
+      document.body.classList.toggle('telefon', tryb === 'telefon');
+      document.querySelectorAll('.tryb button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      wszystkie();
+      setTimeout(wszystkie, 400);
+    });
+  });
+  window.addEventListener('resize', wszystkie);
+  window.addEventListener('load', function () { wszystkie(); setTimeout(wszystkie, 800); });
+  wszystkie();
+})();
+</script>
+</body>
+</html>

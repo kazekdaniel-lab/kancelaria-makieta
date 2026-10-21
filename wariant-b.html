@@ -1,0 +1,1601 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Wariant B „Tusz” - plansza</title>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --tlo: #FFFFFF;
+  --tlo-2: #F4F3F7;
+  --tekst: #1C1A22;
+  --tekst-2: #57545F;
+  --znak: #4A3486;
+  --znak-hover: #3F2C73;
+  --znak-wcisniety: #33245E;
+  --znak-tekst: #FFFFFF;
+  --sygnal: #A8231B;
+  --linia: #9E9BA7;
+  --linia-pola: #75727E;
+  --ciemny: #231E2E;
+  --na-ciemnym: #F4F3F7;
+  --na-ciemnym-2: #BCB7C8;
+  --znak-jasny: #CBBEF2;
+  --linia-ciemna: #6F6981;
+  --tusz: var(--znak);
+
+  --kroj-tresc: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --kroj-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --o-1: 0.25rem;
+  --o-2: 0.5rem;
+  --o-3: 0.75rem;
+  --o-4: 1rem;
+  --o-5: 1.5rem;
+  --o-6: 2rem;
+  --o-7: 3rem;
+  --o-8: 5rem;
+
+  --kolumna-pisma: 42.5rem;
+  --kolumna-danych: 60rem;
+  --margines: 1rem;
+  --sekcja: var(--o-7);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (min-width: 30em) { :root { --margines: 1.5rem; } }
+@media (min-width: 45em) { :root { --sekcja: 4rem; } }
+
+@media (prefers-contrast: more) {
+  :root {
+    --tekst-2: #1C1A22;
+    --linia: #75727E;
+    --linia-pola: #1C1A22;
+  }
+  a { text-decoration-thickness: 2px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: auto; }
+body {
+  margin: 0;
+  background: var(--tlo);
+  color: var(--tekst);
+  font-family: var(--kroj-tresc);
+  font-optical-sizing: auto;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+h1, h2, h3 { font-weight: 600; text-wrap: balance; }
+p { text-wrap: pretty; }
+img, svg { display: block; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Linki i fokus */
+a {
+  color: var(--znak);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+@media (hover: hover) {
+  a:hover { text-decoration-thickness: 2px; }
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--znak);
+  outline-offset: 2px;
+}
+.link-samodzielny {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-family: var(--kroj-ui);
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
+.cel {
+  display: inline-block;
+  padding-block: 0.75rem;
+  margin-block: -0.75rem;
+}
+
+/* Kolumny */
+.kol-pisma,
+.kol-danych {
+  margin-inline: auto;
+  padding-inline: var(--margines);
+}
+.kol-pisma { max-width: calc(var(--kolumna-pisma) + 2 * var(--margines)); }
+.kol-danych { max-width: calc(var(--kolumna-danych) + 2 * var(--margines)); }
+
+/* Meta planszy */
+.pasek-planszy {
+  font: 400 0.8125rem/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #6E6E6E;
+  background: #FFFFFF;
+  border-bottom: 1px dashed #CFCFCF;
+  padding: 0.5rem var(--margines);
+}
+.fragment {
+  border-top: 1px dashed #CFCFCF;
+  padding-top: var(--o-3);
+  padding-bottom: var(--sekcja);
+}
+.etykieta-planszy {
+  font: 400 0.8125rem/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #6E6E6E;
+  margin-bottom: var(--o-7);
+}
+.fragment-naglowek .etykieta-planszy { margin-bottom: var(--o-4); }
+.fragment-stopka { padding-bottom: 0; }
+
+/* Typografia */
+h1 {
+  font-size: clamp(1.875rem, 0.5rem + 7.5vw, 3.5rem);
+  line-height: 1.15;
+}
+h2 {
+  font-size: 1.625rem;
+  line-height: 1.25;
+  margin-bottom: var(--o-5);
+}
+h3, .h3 {
+  font-size: 1.3125rem;
+  line-height: 1.3;
+}
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+.meta {
+  font-family: var(--kroj-ui);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--tekst-2);
+}
+@media (min-width: 45em) {
+  h1 { line-height: 1.1; }
+  h2 { font-size: 2rem; line-height: 1.2; }
+  h3, .h3 { font-size: 1.5rem; }
+  .lead { font-size: 1.375rem; }
+}
+
+/* Przyciski */
+.przycisk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--o-2);
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font: 600 1.0625rem/1.2 var(--kroj-ui);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.przycisk-glowny {
+  background: var(--znak);
+  border-color: var(--znak);
+  color: var(--znak-tekst);
+}
+.przycisk-drugi {
+  background: var(--tlo);
+  border-color: var(--znak);
+  color: var(--znak);
+}
+@media (hover: hover) {
+  .przycisk-glowny:hover { background: var(--znak-hover); border-color: var(--znak-hover); }
+  .przycisk-drugi:hover { background: var(--tlo-2); }
+}
+.przycisk-glowny:active { background: var(--znak-wcisniety); border-color: var(--znak-wcisniety); }
+.przycisk-drugi:active { border-width: 2px; padding: calc(0.75rem - 1px) calc(1.25rem - 1px); }
+.akcje-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--o-3);
+}
+@media (max-width: 29.99em) {
+  .akcje-cta .przycisk { width: 100%; }
+}
+
+/* Fragment 1 - listownik */
+.naglowek-wnetrze {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "logo menu" "panel panel";
+  align-items: center;
+  column-gap: var(--o-4);
+  padding-block: var(--o-3);
+  border-bottom: 1px solid var(--linia);
+}
+.logo {
+  grid-area: logo;
+  display: inline-flex;
+  flex-direction: column;
+  justify-self: start;
+  color: var(--tekst);
+  text-decoration: none;
+  min-height: 2.75rem;
+  justify-content: center;
+}
+.logo-nazwa {
+  font-family: var(--kroj-tresc);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+@media (min-width: 24em) { .logo-nazwa { font-size: 1.5rem; } }
+.przycisk-menu {
+  grid-area: menu;
+  padding-inline: 1rem;
+}
+.panel {
+  grid-area: panel;
+  display: none;
+  padding-top: var(--o-4);
+}
+.naglowek.otwarte .panel,
+html:not(.js) .panel { display: block; }
+.panel .cta-naglowek {
+  display: flex;
+  margin-block: 0 var(--o-4);
+}
+.menu,
+.podmenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--kroj-ui);
+}
+.menu > li > a,
+.menu > li > button {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--tekst);
+  font: 400 1.0625rem/1.2 var(--kroj-ui);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu > li > a:hover,
+.menu > li > button:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.menu a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--znak);
+  text-underline-offset: 0.35em;
+}
+.menu svg { width: 0.75rem; height: 0.75rem; flex: none; }
+[aria-expanded="true"] > .strzalka-dol,
+[aria-expanded="false"] > .strzalka-gora { display: none; }
+html:not(.js) .przycisk-menu { display: none; }
+.js .ma-podmenu > [aria-expanded="false"] + .podmenu { display: none; }
+.podmenu { padding: 0 0 var(--o-2) var(--o-4); }
+.podmenu a {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--tekst);
+  font-size: 1.0625rem;
+  text-decoration: none;
+}
+.podmenu a:hover { text-decoration: underline; }
+
+@media (min-width: 68.75em) {
+  .naglowek-wnetrze {
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 5.5rem 3rem;
+    grid-template-areas: ". logo cta" "nav nav nav";
+    padding-block: 0;
+  }
+  .logo {
+    justify-self: center;
+    text-align: center;
+    align-items: center;
+  }
+  .logo-nazwa { font-size: 1.5rem; }
+  .przycisk-menu { display: none; }
+  .panel,
+  .naglowek.otwarte .panel,
+  html:not(.js) .panel { display: contents; }
+  .panel .cta-naglowek { grid-area: cta; justify-self: end; display: inline-flex; margin: 0; }
+  .panel nav { grid-area: nav; align-self: stretch; }
+  .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--o-5);
+    height: 100%;
+  }
+  .menu > li { position: relative; }
+  .menu > li > a,
+  .menu > li > button {
+    width: auto;
+    min-height: 2.75rem;
+    font-size: 1rem;
+  }
+  .podmenu {
+    position: absolute;
+    top: 100%;
+    left: -1rem;
+    z-index: 10;
+    min-width: 15rem;
+    padding: var(--o-2) 0;
+    background: var(--tlo);
+    border: 1px solid var(--linia-pola);
+  }
+  .podmenu a { padding-inline: 1rem; font-size: 1rem; }
+  /* Bez JS: podmenu po najechaniu albo fokusie klawiatury, żeby 7 celów nie zniknęło */
+  html:not(.js) .podmenu { display: none; }
+  html:not(.js) .ma-podmenu:hover > .podmenu,
+  html:not(.js) .ma-podmenu:focus-within > .podmenu { display: block; }
+}
+
+/* Fragment 2 - pierwszy ekran */
+.hero .lead { margin-top: var(--o-5); }
+.hero .akcje-cta { margin-top: var(--o-6); }
+.hero-tekst {
+  max-width: var(--kolumna-pisma);
+  margin-inline: auto;
+}
+/* Zdjęcie 3:2, osoba w prawej 1/3 kadru. Na telefonie pod tekstem, kadr 4:3 przesunięty w prawo, żeby osoba została w kadrze */
+.hero-foto {
+  width: 100%;
+  height: auto;
+  margin-top: var(--o-7);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 80% 50%;
+  background: var(--tlo-2);
+}
+@media (min-width: 45em) {
+  .hero-foto { aspect-ratio: 3 / 2; }
+}
+/* Od 1024 px tekst leży na jednolitej płaszczyźnie tła w lewej części zdjęcia (lewe 2/3 to miejsce na tekst),
+   więc kontrast nie zależy od zdjęcia. Prawa 1/3 z osobą zostaje odkryta. */
+@media (min-width: 64em) {
+  .hero-uklad {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+  .hero-tekst {
+    grid-area: 1 / 1 / 2 / 2;
+    align-self: start;
+    position: relative;
+    z-index: 1;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--o-6) var(--o-6) 0;
+    background: var(--tlo);
+  }
+  .hero-foto {
+    grid-area: 1 / 1 / 2 / 3;
+    margin-top: var(--o-8);
+  }
+}
+
+/* Pieczęć: ramka 2 px tuszem, linie 1 px tuszem, tekst w --tekst */
+.pieczec {
+  border: 2px solid var(--tusz);
+  border-radius: 6px;
+  font-family: var(--kroj-ui);
+}
+.pieczec > div {
+  padding: var(--o-3) var(--o-4);
+  border-top: 1px solid var(--tusz);
+}
+.pieczec > div:first-child { border-top: 0; }
+.pieczec dt {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--tekst-2);
+}
+.pieczec dd {
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--tekst);
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.125rem;
+}
+
+/* Fragment 3 - sekcje strony głównej: alternatywy, nie kroki, więc bez numeracji */
+.sciezki {
+  list-style: none;
+  padding: 0;
+}
+.sciezki > li {
+  display: grid;
+  padding-block: var(--o-5);
+}
+.sciezki > li:first-child { padding-top: 0; }
+.sciezki > li:last-child { padding-bottom: 0; }
+.sciezki > li + li { border-top: 1px solid var(--linia); }
+.sciezki h2 { margin-bottom: 0; }
+.sciezki p { margin-top: var(--o-2); }
+.sciezki .link-samodzielny { justify-self: start; margin-top: var(--o-1); }
+/* Piktogram ścieżki 48 px w kolumnie pisma, nad nagłówkiem, jak znak nad tytułem pisma */
+.sciezka-ikona { width: 3rem; height: 3rem; margin-bottom: var(--o-3); }
+/* Zdjęcie sekcji w naturalnych proporcjach 3:2: na telefonie nad nagłówkiem, od 720 px w lewej kolumnie */
+.sciezki .foto {
+  width: 100%;
+  height: auto;
+  margin-bottom: var(--o-4);
+  background: var(--tlo-2);
+}
+@media (min-width: 45em) {
+  .sciezki > li {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    column-gap: var(--o-5);
+    align-content: start;
+  }
+  .sciezki .foto {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    margin-bottom: 0;
+  }
+  .sciezki > li > :not(.foto) { grid-column: 2; }
+}
+
+/* Fragment 4 - przykłady problemów */
+.objawy {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--o-4);
+}
+.objawy strong { font-weight: 600; }
+.objawy li {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  column-gap: var(--o-4);
+  align-items: start;
+}
+.sygnal-ikona { width: 2rem; height: 2rem; }
+/* Klin "zakres rozwiązań": na całą kolumnę pisma, nad zdaniem końcowego CTA */
+.klin { width: 100%; height: 6rem; margin-top: var(--o-7); }
+.klin + .wyroznienie { margin-top: var(--o-4); }
+.wyroznienie {
+  margin-top: var(--o-6);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+@media (min-width: 45em) { .wyroznienie { font-size: 1.375rem; } }
+.objawy-cta { margin-top: var(--o-5); }
+
+/* Podstrona postępowania i ogłoszenie */
+.przyklad { margin-bottom: var(--o-3); }
+.karta > .naglowek-karty { margin-bottom: var(--o-5); }
+.naglowek-karty h2 { margin-bottom: 0; }
+.karta .kategoria { margin-bottom: var(--o-2); }
+.pola { font-family: var(--kroj-ui); }
+.pola > div {
+  padding-block: var(--o-3);
+  border-top: 1px solid var(--linia);
+}
+.pola > div:last-child { border-bottom: 1px solid var(--linia); }
+.pola dt {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--tekst-2);
+}
+.pola dd {
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+.pola .kwota-glowna {
+  font-size: 1.375rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+@media (min-width: 40em) {
+  .pola > div {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    column-gap: var(--o-4);
+    align-items: baseline;
+  }
+}
+.lista-w-polu {
+  list-style: none;
+  padding: 0;
+}
+.lista-w-polu > li + li { margin-top: var(--o-1); }
+.mini-os { width: 15rem; max-width: 100%; height: auto; margin: var(--o-3) 0 var(--o-1); }
+.mini-os-data { font: 400 13px/1 var(--kroj-ui); fill: var(--tekst-2); font-variant-numeric: tabular-nums; }
+.kategoria { display: flex; align-items: center; gap: var(--o-3); }
+.kategoria-ikona { flex: none; width: 2.5rem; height: 2.5rem; }
+.karta > .pieczec {
+  max-width: 22.5rem;
+  margin-block: var(--o-4);
+}
+.akcje {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--o-3) var(--o-5);
+  margin-top: var(--o-5);
+}
+@media (max-width: 29.99em) {
+  .akcje .przycisk { width: 100%; }
+}
+
+/* Miejsce na zdjęcie i mapę od klienta: sam podpis, bez obrazu */
+.zaslepka {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  padding: var(--o-3);
+  background: var(--tlo-2);
+  border: 1px solid var(--linia);
+  font: 400 0.9375rem/1.4 var(--kroj-ui);
+  color: var(--tekst-2);
+  text-align: center;
+}
+.galeria {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--o-3);
+  margin-bottom: var(--o-5);
+}
+.galeria > li:first-child { grid-column: 1 / -1; }
+@media (min-width: 40em) {
+  .galeria { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .galeria > li:first-child { grid-column: auto; }
+}
+
+/* Fragment 6 - lista postępowań */
+.pas { background: var(--tlo-2); }
+.filtry {
+  display: grid;
+  gap: var(--o-5);
+  margin-bottom: var(--o-6);
+  font-family: var(--kroj-ui);
+}
+.filtry .pole { max-width: 32rem; }
+html:not(.js) .filtry { display: none; }
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+legend {
+  padding: 0;
+  font: 600 0.9375rem/1.4 var(--kroj-ui);
+  color: var(--tekst);
+}
+.opcje-w-rzedzie {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--o-5);
+}
+.opcja {
+  display: flex;
+  align-items: center;
+  gap: var(--o-3);
+  min-height: 2.75rem;
+  font: 400 1.0625rem/1.3 var(--kroj-ui);
+  cursor: pointer;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  flex: none;
+  accent-color: #4A3486;
+}
+.licznik {
+  font: 400 0.9375rem/1.4 var(--kroj-ui);
+  color: var(--tekst-2);
+  margin-bottom: var(--o-3);
+}
+.postepowania {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--tlo);
+  font: 400 0.9375rem/1.4 var(--kroj-ui);
+  font-variant-numeric: tabular-nums;
+}
+.postepowania th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--tekst-2);
+  background: var(--tlo);
+  padding: var(--o-3) var(--o-4);
+  border-bottom: 1px solid var(--linia-pola);
+  vertical-align: bottom;
+}
+.postepowania tr[hidden] { display: none; }
+.postepowania td {
+  padding: var(--o-3) var(--o-4);
+  border-bottom: 1px solid var(--linia);
+  vertical-align: top;
+}
+.postepowania .sygn { white-space: nowrap; }
+/* Chrome łamie na <wbr> mimo nowrap, więc punkty łamania działają tylko w układzie blokowym */
+.postepowania .sygn wbr { display: none; }
+.etk { display: none; }
+@media (max-width: 44.99em) {
+  .postepowania,
+  .postepowania tbody,
+  .postepowania tr,
+  .postepowania td { display: block; width: 100%; }
+  .postepowania thead {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .postepowania tr {
+    padding: var(--o-4);
+    border-bottom: 1px solid var(--linia);
+  }
+  .postepowania td {
+    padding: var(--o-1) 0;
+    border: 0;
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    column-gap: var(--o-3);
+  }
+  .postepowania td.dluznik {
+    display: block;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    padding-bottom: var(--o-2);
+  }
+  .etk { display: block; color: var(--tekst-2); }
+  /* Przy 320 px pełna sygnatura nie mieści się obok etykiety: łamie się tylko po "/" */
+  .postepowania .sygn { white-space: normal; }
+  .postepowania .sygn wbr { display: inline; }
+}
+
+/* Fragment 8 - wpis */
+.artykul .meta { margin-bottom: var(--o-3); }
+.artykul h2 { margin-bottom: var(--o-5); }
+.artykul .tresc p {
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  max-width: 64ch;
+}
+.artykul .tresc p + p { margin-top: var(--o-5); }
+@media (min-width: 45em) { .artykul .tresc p { font-size: 1.25rem; } }
+.artykul .uwaga { margin-top: var(--o-6); }
+/* Okładka wpisu jak pismo: wyśrodkowany nagłówek z kategorią i linią listownika, tytuł, motyw kategorii */
+.okladka {
+  display: grid;
+  grid-template-rows: auto auto minmax(3rem, 1fr);
+  gap: var(--o-4);
+  margin-bottom: var(--o-6);
+  padding: var(--o-4);
+  border: 1px solid var(--linia);
+  background: var(--tlo);
+}
+.okladka-pole {
+  padding-bottom: var(--o-2);
+  border-bottom: 1px solid var(--linia);
+  font: 400 0.8125rem/1.4 var(--kroj-ui);
+  color: var(--tekst-2);
+  text-align: center;
+}
+.okladka-tytul {
+  max-width: 24ch;
+  font: 600 1.375rem/1.2 var(--kroj-tresc);
+  text-wrap: balance;
+}
+.okladka-motyw { width: 100%; height: 100%; }
+@media (min-width: 40em) {
+  .okladka { aspect-ratio: 1200 / 630; padding: var(--o-5) var(--o-6); }
+  .okladka-tytul { font-size: 2rem; }
+}
+
+/* Fragment 9 - kontakt i formularz */
+.kontakt { display: grid; gap: var(--o-6); }
+@media (min-width: 56em) {
+  .kontakt {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    column-gap: var(--o-7);
+    align-items: start;
+  }
+  .kontakt > h2 { grid-column: 1 / -1; margin-bottom: 0; }
+}
+.kontakt > h2 { margin-bottom: 0; }
+.dane-kontaktowe {
+  display: grid;
+  gap: var(--o-4);
+  font-family: var(--kroj-ui);
+}
+.dane-kontaktowe dt {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--tekst-2);
+}
+.dane-kontaktowe dd {
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+.dane-kontaktowe a {
+  display: inline-block;
+  padding-block: 0.6875rem;
+  margin-block: -0.6875rem;
+}
+.mapa { margin-top: var(--o-5); max-width: 22.5rem; }
+.mapa .link-samodzielny { margin-top: var(--o-1); }
+.mapa-rys svg { width: 100%; height: auto; border: 1px solid var(--linia); background: var(--tlo); }
+.mapa-rys figcaption { margin-top: var(--o-2); font: 400 0.9375rem/1.4 var(--kroj-ui); color: var(--tekst-2); }
+.formularz {
+  display: grid;
+  gap: var(--o-5);
+  font-family: var(--kroj-ui);
+  max-width: var(--kolumna-pisma);
+}
+.pole label {
+  display: block;
+  font: 600 0.9375rem/1.4 var(--kroj-ui);
+  color: var(--tekst);
+  margin-bottom: 0.375rem;
+}
+.pole input,
+.pole textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem;
+  border: 1px solid var(--linia-pola);
+  border-radius: 4px;
+  background: var(--tlo);
+  color: var(--tekst);
+  font: 400 1.0625rem/1.4 var(--kroj-ui);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.pole textarea { resize: vertical; }
+.pole input:focus-visible,
+.pole textarea:focus-visible { border-color: var(--znak); }
+.pole input::placeholder { color: var(--tekst-2); opacity: 1; }
+.pole-blad input,
+.pole-blad input:focus-visible {
+  border: 2px solid var(--sygnal);
+  padding: calc(0.75rem - 1px);
+}
+.blad {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--o-2);
+  margin-top: var(--o-2);
+  font: 600 0.9375rem/1.4 var(--kroj-ui);
+  color: var(--sygnal);
+}
+.blad svg { width: 1.125rem; height: 1.125rem; flex: none; margin-top: 0.0625rem; }
+.para { display: grid; gap: var(--o-5); }
+@media (min-width: 36em) {
+  .para { grid-template-columns: 1fr 1fr; column-gap: var(--o-4); align-items: start; }
+}
+.radio-grupa legend { margin-bottom: var(--o-1); }
+.zgoda {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  column-gap: var(--o-3);
+  align-items: start;
+  min-height: 2.75rem;
+  padding-block: 0.5625rem;
+  font: 400 1.0625rem/1.5 var(--kroj-ui);
+  cursor: pointer;
+}
+.zgoda input { margin-top: 0.1875rem; }
+.zgoda-link { padding-left: calc(1.25rem + var(--o-3)); }
+.formularz .przycisk { justify-self: start; }
+@media (max-width: 29.99em) { .formularz .przycisk { justify-self: stretch; } }
+
+/* Fragment 10 - stopka */
+.stopka {
+  background: var(--ciemny);
+  color: var(--na-ciemnym);
+  padding-block: var(--o-7);
+  font-family: var(--kroj-ui);
+  text-align: center;
+}
+.stopka address {
+  font-style: normal;
+  display: grid;
+  gap: var(--o-1);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--na-ciemnym-2);
+  font-variant-numeric: tabular-nums;
+}
+.stopka .stopka-nazwa {
+  font-family: var(--kroj-tresc);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--na-ciemnym);
+  margin-bottom: var(--o-1);
+}
+.stopka nav {
+  margin-top: var(--o-5);
+  padding-top: var(--o-4);
+  border-top: 1px solid var(--linia-ciemna);
+}
+.stopka-linki {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: var(--o-5);
+}
+.stopka-linki + .stopka-linki { margin-top: var(--o-2); }
+.stopka a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--na-ciemnym);
+  font-size: 0.9375rem;
+}
+.stopka a:focus-visible { outline-color: var(--znak-jasny); }
+
+/* Fragment 11 - próbka kroju */
+.probka { overflow-wrap: anywhere; }
+.probka + .probka { margin-top: var(--o-7); }
+.probka-nazwa {
+  font: 600 0.9375rem/1.4 var(--kroj-ui);
+  color: var(--tekst-2);
+  margin-bottom: var(--o-4);
+}
+.probka-wiersz {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  column-gap: var(--o-4);
+  padding-block: var(--o-3);
+  border-top: 1px solid var(--linia);
+}
+.probka-rozmiar {
+  font: 400 0.8125rem/1.4 var(--kroj-ui);
+  color: var(--tekst-2);
+  padding-top: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+.probka-wiersz p { line-height: 1.2; }
+.probka-wiersz p + p { margin-top: var(--o-2); }
+.probka .dane-probki { font-variant-numeric: tabular-nums; }
+.kroj-tresc { font-family: var(--kroj-tresc); }
+.kroj-ui { font-family: var(--kroj-ui); }
+.r56 { font-size: 3.5rem; }
+.r44 { font-size: 2.75rem; }
+.r32 { font-size: 2rem; }
+.r26 { font-size: 1.625rem; }
+.r24 { font-size: 1.5rem; }
+.r22 { font-size: 1.375rem; }
+.r21 { font-size: 1.3125rem; }
+.r20 { font-size: 1.25rem; }
+.r19 { font-size: 1.1875rem; }
+.r18 { font-size: 1.125rem; }
+.r17 { font-size: 1.0625rem; }
+.r16 { font-size: 1rem; }
+.r15 { font-size: 0.9375rem; }
+.r13 { font-size: 0.8125rem; }
+
+/* Grafika "rysunek z akt", wersja B: kreska 1,5 px tuszem, końce zaokrąglone, kolor przez klasy i currentColor */
+.rys { display: block; overflow: visible; color: var(--tusz); }
+.k { fill: none; stroke: currentColor; stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; }
+.k1 { stroke-width: 1px; }
+.k-ns { vector-effect: non-scaling-stroke; }
+.k-pom { stroke: var(--linia); }
+.k-2 { stroke: var(--tekst-2); }
+.k-przerywana { stroke-dasharray: 2 5; }
+.wyp { fill: currentColor; stroke: none; }
+.wyp-tlo { fill: var(--tlo); }
+
+/* Oś przebiegu (F12, F13): tekst w <ol>, linia w SVG. Przystanek to kółko tuszem z numerem w --tekst (jak pieczęć).
+   Pionowo domyślnie; F12 poziomo od 48em. F13 (5 etapów) zostaje pionowa: w kolumnie pisma 680 px 5 kolumn byłoby za wąskich */
+.os { display: grid; row-gap: var(--o-5); margin: var(--o-5) 0 0; padding: 0; list-style: none; counter-reset: krok; }
+.os-krok { position: relative; min-height: 2rem; padding: 0.125rem 0 0 3rem; counter-increment: krok; }
+.os-krok::before {
+  content: counter(krok) / "";
+  position: absolute; left: 0; top: 0;
+  display: flex; align-items: center; justify-content: center;
+  width: 2rem; height: 2rem;
+  border: 1.5px solid var(--tusz); border-radius: 50%;
+  background: var(--tlo);
+  font: 600 0.9375rem/1 var(--kroj-ui); font-variant-numeric: tabular-nums;
+  color: var(--tekst);
+}
+.os-krok strong { font-weight: 600; }
+.os-linia { position: absolute; overflow: visible; left: calc(1rem - 1px); top: 2rem; width: 2px; height: calc(100% - 2rem + var(--o-5)); }
+.os-tor { stroke: var(--linia); stroke-width: 1px; }
+.os-postep { stroke: var(--tusz); stroke-width: 1.5px; stroke-linecap: round; }
+.os-poziom { display: none; }
+.os + .uwaga { margin-top: var(--o-5); }
+@media (min-width: 48em) {
+  /* 4 kolumny w 680 px to ok. 158 px: tekst kroku 16 px, żeby "niewypłacalnością" mieścił się bez łamania w środku słowa */
+  .os-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--o-4); }
+  .os-4 .os-krok { padding: 3rem 0 0; font-size: 1rem; line-height: 1.5; }
+  .os-4 .os-linia { left: 2rem; top: calc(1rem - 1px); width: calc(100% - 2rem + var(--o-4)); height: 2px; }
+  .os-4 .os-pion { display: none; }
+  .os-4 .os-poziom { display: inline; }
+}
+
+/* Ruch B: najciszej. Teza "linia sprawy się kreśli", dłuższe zakresy, mniejsze przesunięcia niż w A.
+   Stan bazowy = stan końcowy; ruch tylko przy no-preference, przewijanie tylko przy wsparciu animation-timeline */
+@keyframes kresl { from { stroke-dashoffset: 1.05; } to { stroke-dashoffset: 0; } }
+@keyframes odslon-prawo { from { clip-path: inset(0 0 0 60%); } to { clip-path: inset(0); } }
+@keyframes odslon-dol { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+@keyframes pojaw { from { opacity: 0; } }
+@keyframes zapal { from { border-color: var(--linia); color: var(--tekst-2); } }
+
+/* 8. Kolor przycisku i grubość podkreślenia zmieniają się płynnie także przy reduce (to nie ruch przestrzeni) */
+a { transition: text-decoration-thickness 180ms ease; }
+.przycisk { transition: background-color 200ms ease, border-color 200ms ease; }
+
+/* 6. Przejścia między podstronami: crossfade treści, nagłówek stoi */
+@view-transition { navigation: auto; }
+.naglowek { view-transition-name: naglowek; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 220ms; animation-timing-function: var(--ease-out); }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 1. Hero: portret domyka się od prawej (osoba widoczna od pierwszej klatki), potem podtytuł */
+  .hero-foto { animation: odslon-prawo 900ms var(--ease-out) both; }
+  .hero .lead { animation: pojaw 500ms var(--ease-out) 200ms both; }
+
+  /* 8. Wciśnięcie przycisku */
+  .przycisk { transition: background-color 200ms ease, border-color 200ms ease, transform 120ms var(--ease-out); }
+  .przycisk:active { transform: scale(0.98); }
+
+  /* 7. Podmenu: 2 px i pojawienie, otwarcie 200 ms, zamknięcie 140 ms */
+  @media (min-width: 68.75em) {
+    .podmenu { transition: opacity 140ms var(--ease-out), translate 140ms var(--ease-out), display 140ms allow-discrete; }
+    .podmenu[hidden] { opacity: 0; translate: 0 -0.125rem; }
+    .podmenu:not([hidden]) { transition-duration: 200ms; }
+    @starting-style { .podmenu:not([hidden]) { opacity: 0; translate: 0 -0.125rem; } }
+  }
+
+  @supports (animation-timeline: view()) and (timeline-scope: --a) {
+    .kr { stroke-dasharray: 1 2; animation: kresl linear both; }
+
+    /* F3: zdjęcia 2a-2c odsłaniają się z góry jak wysuwana kartka, piktogram ścieżki się kreśli */
+    .sciezki .foto { animation: odslon-dol linear both; animation-timeline: view(); animation-range: cover 15% cover 45%; }
+    .sciezka-ikona { view-timeline: --piktogram block; }
+    .sciezka-ikona .kr { animation-timeline: --piktogram; animation-range: cover 20% cover 38%; }
+    .sciezka-ikona .kr-2 { animation-range: cover 34% cover 50%; }
+    .sciezka-ikona .kr-3 { animation-range: cover 46% cover 58%; }
+    .sciezka-ikona .wyp { animation: pojaw linear both; animation-timeline: --piktogram; animation-range: cover 32% cover 36%; }
+
+    /* 5. Kiedy warto: kreśli się tylko kreska 6 ikon, tekst stoi (lista w jednej kolumnie, kolejność daje samo przewijanie) */
+    .sygnal-ikona { view-timeline: --sygnal block; }
+    .sygnal-ikona .kr { animation-timeline: --sygnal; animation-range: cover 20% cover 40%; }
+    .sygnal-ikona .kr-2 { animation-range: cover 34% cover 54%; }
+
+    /* 2. Klin "zakres rozwiązań": szeroki początek, potem zwężające się krawędzie, podziałka, kreska końca */
+    .klin { view-timeline: --klin block; }
+    .klin .kr { animation-timeline: --klin; animation-range: entry 30% cover 55%; }
+    .klin .kr-start { animation-range: entry 0% entry 30%; }
+    .klin .i1 { --i: 1; }
+    .klin .i2 { --i: 2; }
+    .klin .i3 { --i: 3; }
+    /* podziałka jest przerywana, więc nie kreśli się (dasharray kreślenia zjadłby przerwy), tylko pojawia się po kolei */
+    .klin .kr-pom { animation: pojaw linear both; animation-timeline: --klin; animation-range: cover calc(10% + 10% * var(--i)) cover calc(16% + 10% * var(--i)); }
+    .klin .kr-koniec { animation-range: cover 54% cover 60%; }
+
+    /* 3 i 4. Oś: linia kreśli się, przystanek dostaje tusz, gdy linia go mija.
+       Pionowo: każdy krok ma własną oś widoku, sąsiedzi widzą ją przez timeline-scope */
+    .os { timeline-scope: --k1, --k2, --k3, --k4, --k5; }
+    .os-krok:nth-child(1) { view-timeline: --k1 block; }
+    .os-krok:nth-child(2) { view-timeline: --k2 block; }
+    .os-krok:nth-child(3) { view-timeline: --k3 block; }
+    .os-krok:nth-child(4) { view-timeline: --k4 block; }
+    .os-krok:nth-child(5) { view-timeline: --k5 block; }
+    .os-postep { animation-range: cover 15% cover 50%; }
+    .os-krok:nth-child(1) .os-postep { animation-timeline: --k1; }
+    .os-krok:nth-child(2) .os-postep { animation-timeline: --k2; }
+    .os-krok:nth-child(3) .os-postep { animation-timeline: --k3; }
+    .os-krok:nth-child(4) .os-postep { animation-timeline: --k4; }
+    .os-krok::before { animation: zapal var(--ease-out) both; }
+    .os-krok:nth-child(1)::before { animation-timeline: --k1; animation-range: cover 10% cover 15%; }
+    .os-krok:nth-child(2)::before { animation-timeline: --k1; animation-range: cover 45% cover 50%; }
+    .os-krok:nth-child(3)::before { animation-timeline: --k2; animation-range: cover 45% cover 50%; }
+    .os-krok:nth-child(4)::before { animation-timeline: --k3; animation-range: cover 45% cover 50%; }
+    .os-krok:nth-child(5)::before { animation-timeline: --k4; animation-range: cover 45% cover 50%; }
+    /* Poziomo (F12 od 48em): jedna oś widoku na liście, odcinki po kolei */
+    @media (min-width: 48em) {
+      .os-4 { view-timeline: --os block; }
+      .os-4 .os-krok:nth-child(n) .os-postep, .os-4 .os-krok:nth-child(n)::before { animation-timeline: --os; }
+      .os-4 .os-krok:nth-child(1) .os-postep { animation-range: cover 12% cover 24%; }
+      .os-4 .os-krok:nth-child(2) .os-postep { animation-range: cover 24% cover 36%; }
+      .os-4 .os-krok:nth-child(3) .os-postep { animation-range: cover 36% cover 48%; }
+      .os-4 .os-krok:nth-child(1)::before { animation-range: cover 9% cover 12%; }
+      .os-4 .os-krok:nth-child(2)::before { animation-range: cover 21% cover 24%; }
+      .os-4 .os-krok:nth-child(3)::before { animation-range: cover 33% cover 36%; }
+      .os-4 .os-krok:nth-child(4)::before { animation-range: cover 45% cover 48%; }
+    }
+  }
+}
+
+@media (forced-colors: active) {
+  .pieczec, .zaslepka, .pole input, .pole textarea, .przycisk, .okladka, .mapa-rys svg { border-color: CanvasText; }
+  .os-krok::before { border-color: CanvasText; color: CanvasText; }
+  .os-postep { stroke: CanvasText; }
+}
+</style>
+</head>
+<body>
+
+<div class="pasek-planszy">Wariant B „Tusz” · plansza, dane fikcyjne</div>
+
+<div class="fragment fragment-naglowek" id="f1">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 1 - Nagłówek i&nbsp;menu (pkt 13)</p>
+  </div>
+  <header class="naglowek">
+    <div class="kol-danych">
+      <div class="naglowek-wnetrze">
+        <a class="logo" href="#f2">
+          <span class="logo-nazwa">[Nazwa kancelarii]</span>
+        </a>
+        <button type="button" class="przycisk przycisk-drugi przycisk-menu" aria-expanded="false" aria-controls="panel-menu">Menu</button>
+        <div class="panel" id="panel-menu">
+          <a class="przycisk przycisk-drugi cta-naglowek" href="#f9">Umów konsultację</a>
+          <nav aria-label="Główna">
+            <ul class="menu">
+              <li><a href="#f2">Strona główna</a></li>
+              <li><a href="#">O&nbsp;kancelarii</a></li>
+              <li><a href="#f3">Restrukturyzacja</a></li>
+              <li><a href="#f3">Upadłość</a></li>
+              <li><a href="#f3">Dla wierzycieli</a></li>
+              <li class="ma-podmenu">
+                <button type="button" aria-expanded="false" aria-controls="podmenu-postepowania">Postępowania<svg class="strzalka-dol" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4.5 6 8.5 10 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><svg class="strzalka-gora" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 7.5 6 3.5 10 7.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+                <ul class="podmenu" id="podmenu-postepowania">
+                  <li><a href="#f6">Prowadzone postępowania</a></li>
+                  <li><a href="#f7">Sprzedaż majątku</a></li>
+                  <li><a href="#">Komunikaty</a></li>
+                </ul>
+              </li>
+              <li class="ma-podmenu">
+                <button type="button" aria-expanded="false" aria-controls="podmenu-wiedza">Wiedza<svg class="strzalka-dol" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4.5 6 8.5 10 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><svg class="strzalka-gora" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 7.5 6 3.5 10 7.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+                <ul class="podmenu" id="podmenu-wiedza">
+                  <li><a href="#f8">Publikacje</a></li>
+                  <li><a href="#">Aktualności</a></li>
+                  <li><a href="#">Case studies</a></li>
+                  <li><a href="#">Zmiany w&nbsp;prawie</a></li>
+                </ul>
+              </li>
+              <li><a href="#f9">Kontakt</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main>
+
+<section class="fragment hero" id="f2" aria-labelledby="h-f2">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 2 - Strona główna: pierwszy ekran (pkt 1)</p>
+  </div>
+  <div class="kol-danych hero-uklad">
+    <div class="hero-tekst">
+      <h1 id="h-f2">Restrukturyzacja. Upadłość. Ochrona przedsiębiorstwa w&nbsp;sytuacji kryzysowej.</h1>
+      <p class="lead">Licencjonowany doradca restrukturyzacyjny i&nbsp;syndyk. Kompleksowe prowadzenie postępowań restrukturyzacyjnych i&nbsp;upadłościowych oraz doradztwo dla przedsiębiorców, wierzycieli i&nbsp;osób fizycznych.</p>
+      <div class="akcje-cta">
+        <a class="przycisk przycisk-glowny" href="#f9">Umów konsultację</a>
+        <a class="przycisk przycisk-drugi" href="#f6">Sprawdź prowadzone postępowania</a>
+      </div>
+    </div>
+    <img class="hero-foto" src="img/1b-portret-poziom-powazny.webp" width="2400" height="1600" fetchpriority="high" decoding="async" alt="[Imię i nazwisko], licencjonowany doradca restrukturyzacyjny i syndyk">
+  </div>
+</section>
+
+<div class="fragment" id="f3">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 3 - Strona główna: sekcje Restrukturyzacja, Upadłość, Dla wierzycieli (pkt 1 i&nbsp;14)</p>
+  </div>
+  <div class="kol-pisma">
+    <ul class="sciezki">
+      <li>
+        <img class="foto" src="img/2a-praca-biurko.webp" width="1800" height="1200" loading="lazy" decoding="async" alt="Doradca przy biurku nad dokumentami">
+        <svg class="rys sciezka-ikona" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M4 24H18"/><path class="k kr kr-2" pathLength="1" d="M18 24C26 24 27 12 35 12H44"/><path class="k kr kr-2" pathLength="1" d="M18 24C26 24 27 36 35 36H44"/><circle class="wyp" cx="18" cy="24" r="2.5"/></svg>
+        <h2 class="h3">Restrukturyzacja przedsiębiorstw</h2>
+        <p>Twoja firma ma problemy finansowe? Tracisz płynność, rosną zaległości, wierzyciele naciskają. Dobierzemy postępowanie restrukturyzacyjne, które da Ci ochronę i&nbsp;czas.</p>
+        <a class="link-samodzielny" href="#">Restrukturyzacja</a>
+      </li>
+      <li>
+        <img class="foto" src="img/2b-praca-rozmowa.webp" width="1800" height="1200" loading="lazy" decoding="async" alt="Rozmowa doradcy z klientem">
+        <svg class="rys sciezka-ikona" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M6 24H38"/><path class="k kr kr-2" pathLength="1" d="M41 14V34"/><circle class="wyp" cx="6" cy="24" r="2.5"/></svg>
+        <h2 class="h3">Upadłość</h2>
+        <p>Rozważasz upadłość? Ocenimy przesłanki niewypłacalności, przygotujemy wniosek i&nbsp;doradzimy członkom zarządu. Prowadzimy też upadłość konsumencką.</p>
+        <a class="link-samodzielny" href="#">Upadłość</a>
+      </li>
+      <li>
+        <img class="foto" src="img/2c-praca-analiza.webp" width="1800" height="1200" loading="lazy" decoding="async" alt="Doradca analizuje dokumenty finansowe">
+        <svg class="rys sciezka-ikona" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M24 9V40M17 40H31"/><path class="k kr kr-2" pathLength="1" d="M8 14H40"/><path class="k kr kr-3" pathLength="1" d="M8 14L4 27M8 14L12 27M3 27Q8 33 13 27"/><path class="k kr kr-3" pathLength="1" d="M40 14L36 27M40 14L44 27M35 27Q40 33 45 27"/><circle class="wyp" cx="24" cy="8" r="2"/></svg>
+        <h2 class="h3">Dla wierzycieli</h2>
+        <p>Jesteś wierzycielem? Reprezentujemy wierzycieli w&nbsp;postępowaniach, analizujemy propozycje układowe i&nbsp;przewidywany stopień zaspokojenia.</p>
+        <a class="link-samodzielny" href="#">Dla wierzycieli</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<section class="fragment" id="f4" aria-labelledby="h-f4">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 4 - Strona główna: Kiedy warto skontaktować się z&nbsp;doradcą restrukturyzacyjnym? + końcowe CTA (pkt 1)</p>
+  </div>
+  <div class="kol-pisma">
+    <h2 id="h-f4">Kiedy warto skontaktować się z&nbsp;doradcą restrukturyzacyjnym?</h2>
+    <ul class="objawy">
+      <li><svg class="rys sygnal-ikona" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M16 4C16 4 7 14 7 20A9 9 0 0 0 25 20C25 14 16 4 16 4Z"/><path class="k kr kr-2" pathLength="1" d="M16 13V24M12.5 20.5L16 24L19.5 20.5"/></svg><span><strong>Utrata płynności</strong> - bieżące faktury płacisz z&nbsp;opóźnieniem, a&nbsp;wpływy nie pokrywają kosztów.</span></li>
+      <li><svg class="rys sygnal-ikona" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M5 26L19 7M9 10.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0M15 22.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"/><path class="k kr kr-2" pathLength="1" d="M26 27V6M22.5 9.5L26 6L29.5 9.5"/></svg><span><strong>Zaległości wobec ZUS/US</strong> - rosną odsetki, a&nbsp;urząd zapowiada zabezpieczenie lub egzekucję.</span></li>
+      <li><svg class="rys sygnal-ikona" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M13 4H19V11L22 16H10L13 11Z"/><path class="k kr kr-2" pathLength="1" d="M6 16H26V21H6ZM6 27H26"/></svg><span><strong>Egzekucje</strong> - komornik zajmuje rachunek albo majątek potrzebny do pracy.</span></li>
+      <li><svg class="rys sygnal-ikona" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M9 6H28V21"/><path class="k kr kr-2" pathLength="1" d="M4 11H23V27H4ZM4 11L13.5 19L23 11"/></svg><span><strong>Presja wierzycieli</strong> - kolejne wezwania do zapłaty i&nbsp;groźby wniosku o&nbsp;upadłość.</span></li>
+      <li><svg class="rys sygnal-ikona" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M7 13V4H25V13M7 13L11 16L15 13L19 16L23 13L25 14.5"/><path class="k kr kr-2" pathLength="1" d="M7 19L11 22L15 19L19 22L23 19L25 20.5V28H7Z"/></svg><span><strong>Wypowiedziane finansowanie</strong> - bank albo leasingodawca wypowiada umowę lub żąda natychmiastowej spłaty.</span></li>
+      <li><svg class="rys sygnal-ikona" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="k kr" pathLength="1" d="M16 4L29 27H3Z"/><path class="k kr kr-2" pathLength="1" d="M16 12V19M16 23V23.2"/></svg><span><strong>Ryzyko niewypłacalności</strong> - zobowiązania rosną szybciej niż majątek, a&nbsp;terminy przestają być realne.</span></li>
+    </ul>
+    <svg class="rys klin" aria-hidden="true" focusable="false">
+      <line class="k kr kr-start" pathLength="1" x1="1" y1="6" x2="1" y2="90"/>
+      <line class="k kr" pathLength="1" x1="1" y1="6" x2="100%" y2="42"/>
+      <line class="k kr" pathLength="1" x1="1" y1="90" x2="100%" y2="54"/>
+      <line class="k k1 k-pom k-przerywana kr-pom i1" x1="25%" y1="16" x2="25%" y2="80"/>
+      <line class="k k1 k-pom k-przerywana kr-pom i2" x1="50%" y1="25" x2="50%" y2="71"/>
+      <line class="k k1 k-pom k-przerywana kr-pom i3" x1="75%" y1="34" x2="75%" y2="62"/>
+      <line class="k kr kr-koniec" pathLength="1" x1="100%" y1="40" x2="100%" y2="56"/>
+    </svg>
+    <p class="wyroznienie">Problemy finansowe nie zawsze muszą prowadzić do upadłości. Im wcześniej zostanie przeprowadzona analiza sytuacji przedsiębiorstwa, tym większy jest zakres dostępnych rozwiązań.</p>
+    <div class="objawy-cta">
+      <a class="przycisk przycisk-glowny" href="#f9">Umów konsultację</a>
+    </div>
+  </div>
+</section>
+
+<section class="fragment" id="f5" aria-labelledby="h-f5">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 5 - Podstrona postępowania (pkt 6)</p>
+    <p class="meta przyklad">Przykład - dane fikcyjne</p>
+    <article class="karta" aria-labelledby="h-f5">
+      <div class="naglowek-karty">
+        <h2 id="h-f5" class="h3">Firma Przykładowa sp. z&nbsp;o.o.</h2>
+      </div>
+      <dl class="pola">
+        <div><dt>Sygnatura akt</dt><dd>WR1W/<wbr>GRz/<wbr>123/<wbr>2026</dd></div>
+        <div><dt>Sąd prowadzący postępowanie</dt><dd>Sąd Rejonowy dla Wrocławia-Fabrycznej we Wrocławiu, VIII Wydział Gospodarczy</dd></div>
+        <div><dt>Rodzaj postępowania</dt><dd>Przyspieszone postępowanie układowe</dd></div>
+        <div><dt>Funkcja pełniona przez doradcę</dt><dd>Nadzorca sądowy</dd></div>
+        <div><dt>Podstawowe informacje o&nbsp;postępowaniu</dt><dd>Postępowanie otwarte postanowieniem sądu z&nbsp;<time datetime="2026-09-15">15.09.2026</time>. Dłużnik prowadzi działalność produkcyjną i&nbsp;kontynuuje ją w&nbsp;trakcie postępowania.</dd></div>
+        <div><dt>Istotne terminy</dt><dd>
+          <ul class="lista-w-polu">
+            <li><time datetime="2026-11-05T10:00">05.11.2026, godz.&nbsp;10:00</time> - głosowanie nad układem</li>
+            <li><time datetime="2026-10-20">20.10.2026</time> - termin na zgłoszenie zastrzeżeń do spisu wierzytelności</li>
+          </ul>
+          <svg class="rys mini-os" viewBox="0 0 240 44" aria-hidden="true" focusable="false"><path class="k k1 k-pom k-ns" d="M22 9V15M36 9V15M50 9V15M64 9V15M78 9V15M92 9V15M106 9V15M120 9V15M134 9V15M148 9V15M162 9V15M176 9V15M190 9V15M204 9V15M218 9V15"/><path class="k k-ns" d="M8 12H232"/><path class="k k-ns" d="M8 4V20M232 4V20"/><text class="mini-os-data" x="8" y="38">20.10.2026</text><text class="mini-os-data" x="232" y="38" text-anchor="end">05.11.2026</text></svg>
+        </dd></div>
+        <div><dt>Komunikaty dla wierzycieli</dt><dd><time datetime="2026-10-10">10.10.2026</time> - Spis wierzytelności został złożony do akt sprawy.</dd></div>
+        <div><dt>Dokumenty do pobrania</dt><dd>
+          <ul class="lista-w-polu">
+            <li><a class="link-samodzielny" href="#">Spis wierzytelności (PDF)</a></li>
+            <li><a class="link-samodzielny" href="#">Propozycje układowe (PDF)</a></li>
+          </ul>
+        </dd></div>
+        <div><dt>Informacje dotyczące sprzedaży majątku</dt><dd>W&nbsp;tym postępowaniu nie prowadzi się sprzedaży majątku.</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section class="fragment pas" id="f6" aria-labelledby="h-f6">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 6 - Prowadzone postępowania: lista z&nbsp;wyszukiwarką (pkt 6 i&nbsp;15)</p>
+    <h2 id="h-f6">Prowadzone postępowania</h2>
+    <form class="filtry" role="search" aria-label="Wyszukiwanie postępowań" action="#">
+      <div class="pole">
+        <label for="szukaj">Szukaj po nazwie podmiotu lub sygnaturze akt</label>
+        <input type="search" id="szukaj" name="q" placeholder="np. WR1W/GRz/123/2026" autocomplete="off">
+      </div>
+      <fieldset>
+        <legend>Rodzaj postępowania</legend>
+        <div class="opcje-w-rzedzie">
+          <label class="opcja"><input type="radio" name="rodzaj" value="wszystkie" checked>Wszystkie</label>
+          <label class="opcja"><input type="radio" name="rodzaj" value="restrukturyzacja">Restrukturyzacja</label>
+          <label class="opcja"><input type="radio" name="rodzaj" value="upadlosc">Upadłość</label>
+        </div>
+      </fieldset>
+    </form>
+    <p class="licznik" aria-live="polite">4 postępowania</p>
+    <table class="postepowania" role="table">
+      <caption class="sr-only">Prowadzone postępowania</caption>
+      <thead role="rowgroup">
+        <tr role="row">
+          <th scope="col" role="columnheader">Dłużnik / upadły</th>
+          <th scope="col" role="columnheader">Sygnatura akt</th>
+          <th scope="col" role="columnheader">Sąd</th>
+          <th scope="col" role="columnheader">Rodzaj postępowania</th>
+          <th scope="col" role="columnheader">Funkcja doradcy</th>
+        </tr>
+      </thead>
+      <tbody role="rowgroup">
+        <tr role="row" data-rodzaj="restrukturyzacja">
+          <td role="cell" class="dluznik"><a class="cel" href="#f5">Firma Przykładowa sp. z&nbsp;o.o.</a></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Sygnatura akt</span><span class="sygn">WR1W/<wbr>GRz/<wbr>123/<wbr>2026</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Sąd</span><span>SR Wrocław-Fabryczna</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Rodzaj postępowania</span><span>Przyspieszone postępowanie układowe</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Funkcja doradcy</span><span>Nadzorca sądowy</span></td>
+        </tr>
+        <tr role="row" data-rodzaj="upadlosc">
+          <td role="cell" class="dluznik"><a class="cel" href="#">Zakład Testowy S.A.</a></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Sygnatura akt</span><span class="sygn">WR1W/<wbr>GU/<wbr>45/<wbr>2026</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Sąd</span><span>SR Wrocław-Fabryczna</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Rodzaj postępowania</span><span>Upadłość</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Funkcja doradcy</span><span>Syndyk</span></td>
+        </tr>
+        <tr role="row" data-rodzaj="restrukturyzacja">
+          <td role="cell" class="dluznik"><a class="cel" href="#">Przykładowy Handel sp. z&nbsp;o.o.</a></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Sygnatura akt</span><span class="sygn">PO1P/<wbr>GRz/<wbr>12/<wbr>2026</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Sąd</span><span>SR Poznań-Stare Miasto</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Rodzaj postępowania</span><span>Postępowanie o&nbsp;zatwierdzenie układu</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Funkcja doradcy</span><span>Nadzorca układu</span></td>
+        </tr>
+        <tr role="row" data-rodzaj="restrukturyzacja">
+          <td role="cell" class="dluznik"><a class="cel" href="#">Hurtownia Próbna sp. z&nbsp;o.o.</a></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Sygnatura akt</span><span class="sygn">WR1W/<wbr>GRz/<wbr>201/<wbr>2026</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Sąd</span><span>SR Wrocław-Fabryczna</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Rodzaj postępowania</span><span>Postępowanie sanacyjne</span></td>
+          <td role="cell"><span class="etk" aria-hidden="true">Funkcja doradcy</span><span>Zarządca</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="fragment" id="f7" aria-labelledby="h-f7">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 7 - Ogłoszenie sprzedaży majątku (pkt 7)</p>
+    <p class="meta przyklad">Przykład - dane fikcyjne</p>
+    <article class="karta" aria-labelledby="h-f7">
+      <div class="naglowek-karty">
+        <p class="meta kategoria"><svg class="rys kategoria-ikona" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path class="k k1 k-pom k-przerywana" d="M2.5 2.5H37.5V37.5H2.5Z"/><path class="k" d="M17 29H10V11H30V29H23M10 19H17V11"/><path class="k k1" d="M17 29V23A6 6 0 0 1 23 29"/></svg>Nieruchomości</p>
+        <h2 id="h-f7" class="h3">Hala magazynowa z&nbsp;działką, Oleśnica</h2>
+      </div>
+      <ul class="galeria" aria-label="Zdjęcia">
+        <li class="zaslepka">[zdjęcie od klienta]</li>
+        <li class="zaslepka">[zdjęcie od klienta]</li>
+        <li class="zaslepka">[zdjęcie od klienta]</li>
+      </ul>
+      <dl class="pola">
+        <div><dt>Opis przedmiotu sprzedaży</dt><dd>Hala o&nbsp;powierzchni 1&nbsp;150&nbsp;m² z&nbsp;zapleczem biurowym, na działce 4&nbsp;200&nbsp;m² z&nbsp;dojazdem z&nbsp;drogi powiatowej.</dd></div>
+        <div><dt>Cena wywoławcza</dt><dd class="kwota-glowna">1&nbsp;250&nbsp;000,00&nbsp;zł</dd></div>
+      </dl>
+      <dl class="pieczec">
+        <div><dt>Termin składania ofert</dt><dd><time datetime="2026-11-27T12:00">27.11.2026, godz.&nbsp;12:00</time></dd></div>
+        <div><dt>Informacja o&nbsp;wadium</dt><dd>125&nbsp;000,00&nbsp;zł, wpłata do <time datetime="2026-11-20">20.11.2026</time> na zasadach z&nbsp;regulaminu</dd></div>
+      </dl>
+      <dl class="pola">
+        <div><dt>Regulamin sprzedaży do pobrania</dt><dd><a class="link-samodzielny" href="#">Regulamin sprzedaży (PDF)</a></dd></div>
+        <div><dt>Operat lub wycena</dt><dd><a class="link-samodzielny" href="#">Operat szacunkowy (PDF)</a></dd></div>
+        <div><dt>Dane kontaktowe</dt><dd>
+          <ul class="lista-w-polu">
+            <li>[imię i&nbsp;nazwisko]</li>
+            <li>[+48&nbsp;000&nbsp;000&nbsp;000]</li>
+            <li>[adres@domena.pl]</li>
+          </ul>
+        </dd></div>
+      </dl>
+      <div class="akcje">
+        <a class="przycisk przycisk-glowny" href="#">Pobierz regulamin</a>
+        <a class="przycisk przycisk-drugi" href="#f9">Skontaktuj się</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="fragment" id="f8" aria-labelledby="h-f8">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 8 - Wiedza: wpis (pkt 8)</p>
+  </div>
+  <article class="kol-pisma artykul" aria-labelledby="h-f8">
+    <figure class="okladka" aria-hidden="true">
+      <p class="okladka-pole">Restrukturyzacja</p>
+      <p class="okladka-tytul">Co daje postępowanie o&nbsp;zatwierdzenie układu?</p>
+      <svg class="rys okladka-motyw" viewBox="0 0 600 120" preserveAspectRatio="xMinYMax meet" focusable="false"><path class="k k-ns" d="M4 60H220"/><path class="k k-ns" d="M220 60C300 60 312 20 392 20H596M220 60C300 60 312 100 392 100H596"/><circle class="wyp" cx="220" cy="60" r="5"/></svg>
+    </figure>
+    <p class="meta tnum">Restrukturyzacja · <time datetime="2026-10-18">18.10.2026</time></p>
+    <h2 id="h-f8">Co daje postępowanie o&nbsp;zatwierdzenie układu?</h2>
+    <div class="tresc">
+      <p>Postępowanie o&nbsp;zatwierdzenie układu to najprostszy i&nbsp;najszybszy z&nbsp;czterech trybów restrukturyzacji. Dłużnik sam zbiera głosy wierzycieli, a&nbsp;nad przebiegiem czuwa nadzorca układu, z&nbsp;którym zawiera umowę. Sąd wkracza dopiero na końcu, gdy ocenia, czy przyjęty układ może zostać zatwierdzony.</p>
+      <p>Najważniejsza korzyść pojawia się wcześniej. Po obwieszczeniu o&nbsp;otwarciu postępowania w&nbsp;Krajowym Rejestrze Zadłużonych egzekucje dotyczące wierzytelności objętych układem zostają zawieszone. Bez zgody nadzorcy układu wierzyciele nie mogą też wypowiedzieć kluczowych umów, m.in. najmu lokalu, w&nbsp;którym działa firma, i&nbsp;leasingu. Skutki obwieszczenia wygasają, jeśli w&nbsp;ciągu 4&nbsp;miesięcy dłużnik nie złoży wniosku o&nbsp;zatwierdzenie układu (art.&nbsp;226a i&nbsp;nast. Prawa restrukturyzacyjnego).</p>
+    </div>
+    <p class="meta uwaga">Projekt treści do weryfikacji przez doradcę.</p>
+  </article>
+</section>
+
+<section class="fragment" id="f9" aria-labelledby="h-f9">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 9 - Kontakt (pkt 12)</p>
+    <div class="kontakt">
+      <h2 id="h-f9">Porozmawiajmy o&nbsp;sytuacji Twojej firmy</h2>
+      <div class="kontakt-dane">
+        <dl class="dane-kontaktowe">
+          <div><dt>Telefon</dt><dd><a href="tel:+48000000000">[+48&nbsp;000&nbsp;000&nbsp;000]</a></dd></div>
+          <div><dt>Adres e-mail</dt><dd><a href="mailto:adres@domena.pl">[adres@domena.pl]</a></dd></div>
+          <div><dt>Adres kancelarii</dt><dd>[ulica, kod, miasto]</dd></div>
+          <div><dt>Godziny pracy</dt><dd>[pn-pt 9:00-17:00]</dd></div>
+        </dl>
+        <div class="mapa">
+          <figure class="mapa-rys">
+            <svg class="rys" viewBox="0 0 320 240" aria-hidden="true" focusable="false">
+              <path class="k k1 k-pom k-ns" d="M16 16H184V84H16ZM216 16H304V84H216ZM16 116H184V224H16ZM216 116H304V224H216Z"/>
+              <path class="k k1 k-2 k-ns k-przerywana" d="M200 0V240M0 100H320"/>
+              <path class="k k-ns" d="M138 140H178V176H138Z"/>
+              <path class="wyp" d="M158 156C158 156 146 142 146 134A12 12 0 0 1 170 134C170 142 158 156 158 156Z"/>
+              <circle class="wyp-tlo" cx="158" cy="134" r="4"/>
+            </svg>
+            <figcaption>[mapa dojazdu]</figcaption>
+          </figure>
+          <a class="link-samodzielny" href="#">Otwórz w&nbsp;Mapach Google</a>
+        </div>
+      </div>
+      <form class="formularz" action="#" method="post" novalidate>
+        <div class="pole">
+          <label for="imie">Imię i&nbsp;nazwisko</label>
+          <input type="text" id="imie" name="imie" autocomplete="name">
+        </div>
+        <div class="pole">
+          <label for="firma">Firma</label>
+          <input type="text" id="firma" name="firma" autocomplete="organization">
+        </div>
+        <div class="para">
+          <div class="pole">
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" name="telefon" autocomplete="tel">
+          </div>
+          <div class="pole pole-blad">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" value="nazwa@domena" aria-invalid="true" aria-describedby="blad-email">
+            <p class="blad" id="blad-email"><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="8" fill="currentColor"/><path d="M9 4.5v5.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="13.25" r="1.15" fill="#FFFFFF"/></svg>Wpisz adres w&nbsp;formacie nazwa@domena.pl.</p>
+          </div>
+        </div>
+        <fieldset class="radio-grupa">
+          <legend>Rodzaj sprawy</legend>
+          <label class="opcja"><input type="radio" name="sprawa" value="restrukturyzacja">Restrukturyzacja</label>
+          <label class="opcja"><input type="radio" name="sprawa" value="upadlosc-firmy">Upadłość firmy</label>
+          <label class="opcja"><input type="radio" name="sprawa" value="upadlosc-konsumencka">Upadłość konsumencka</label>
+          <label class="opcja"><input type="radio" name="sprawa" value="wierzyciel">Wierzyciel</label>
+          <label class="opcja"><input type="radio" name="sprawa" value="inne">Inne</label>
+        </fieldset>
+        <div class="pole">
+          <label for="opis">Krótko opisz sytuację</label>
+          <textarea id="opis" name="opis" rows="6"></textarea>
+        </div>
+        <div class="zgoda-grupa">
+          <label class="zgoda" for="zgoda">
+            <input type="checkbox" id="zgoda" name="zgoda" required aria-required="true">
+            <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w&nbsp;celu odpowiedzi na zapytanie.</span>
+          </label>
+          <p class="zgoda-link"><a class="link-samodzielny" href="#">Informacja o&nbsp;przetwarzaniu danych osobowych</a></p>
+        </div>
+        <button type="submit" class="przycisk przycisk-glowny">Umów konsultację</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="fragment" id="f12" aria-labelledby="h-f12">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 12 - O&nbsp;kancelarii: Jak pracujemy (pkt 2)</p>
+  </div>
+  <div class="kol-pisma">
+    <h2 id="h-f12">Jak pracujemy</h2>
+    <ol class="os os-4" role="list">
+      <li class="os-krok"><svg class="os-linia" aria-hidden="true" focusable="false"><line class="os-tor os-pion" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-postep os-pion kr" pathLength="1" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-tor os-poziom" x1="0" y1="50%" x2="100%" y2="50%"/><line class="os-postep os-poziom kr" pathLength="1" x1="0" y1="50%" x2="100%" y2="50%"/></svg><strong>Analiza</strong> - sprawdzamy sytuację finansową firmy, zobowiązania i&nbsp;zagrożenie niewypłacalnością.</li>
+      <li class="os-krok"><svg class="os-linia" aria-hidden="true" focusable="false"><line class="os-tor os-pion" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-postep os-pion kr" pathLength="1" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-tor os-poziom" x1="0" y1="50%" x2="100%" y2="50%"/><line class="os-postep os-poziom kr" pathLength="1" x1="0" y1="50%" x2="100%" y2="50%"/></svg><strong>Strategia</strong> - dobieramy postępowanie i&nbsp;plan działania do sytuacji firmy i&nbsp;jej wierzycieli.</li>
+      <li class="os-krok"><svg class="os-linia" aria-hidden="true" focusable="false"><line class="os-tor os-pion" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-postep os-pion kr" pathLength="1" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-tor os-poziom" x1="0" y1="50%" x2="100%" y2="50%"/><line class="os-postep os-poziom kr" pathLength="1" x1="0" y1="50%" x2="100%" y2="50%"/></svg><strong>Postępowanie</strong> - przygotowujemy dokumenty i&nbsp;prowadzimy postępowanie przed sądem i&nbsp;z&nbsp;wierzycielami.</li>
+      <li class="os-krok"><strong>Realizacja układu / zakończenie postępowania</strong> - nadzorujemy wykonanie układu albo doprowadzamy postępowanie do końca.</li>
+    </ol>
+    <p class="meta uwaga">Projekt treści do weryfikacji przez doradcę.</p>
+  </div>
+</section>
+
+<section class="fragment" id="f13" aria-labelledby="h-f13">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 13 - Podstrona procedury: orientacyjny przebieg procesu (pkt 3)</p>
+  </div>
+  <div class="kol-pisma">
+    <h2 id="h-f13">Orientacyjny przebieg procesu</h2>
+    <ol class="os os-5" role="list">
+      <li class="os-krok"><svg class="os-linia" aria-hidden="true" focusable="false"><line class="os-tor os-pion" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-postep os-pion kr" pathLength="1" x1="50%" y1="0" x2="50%" y2="100%"/></svg><strong>Analiza i&nbsp;umowa z&nbsp;nadzorcą układu</strong> - ocena sytuacji, wybór trybu, umowa z&nbsp;nadzorcą.</li>
+      <li class="os-krok"><svg class="os-linia" aria-hidden="true" focusable="false"><line class="os-tor os-pion" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-postep os-pion kr" pathLength="1" x1="50%" y1="0" x2="50%" y2="100%"/></svg><strong>Obwieszczenie w&nbsp;Krajowym Rejestrze Zadłużonych</strong> - od tego dnia egzekucje dotyczące wierzytelności objętych układem zostają zawieszone.</li>
+      <li class="os-krok"><svg class="os-linia" aria-hidden="true" focusable="false"><line class="os-tor os-pion" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-postep os-pion kr" pathLength="1" x1="50%" y1="0" x2="50%" y2="100%"/></svg><strong>Propozycje układowe i&nbsp;głosowanie wierzycieli</strong> - dłużnik zbiera głosy, nadzorca czuwa nad przebiegiem.</li>
+      <li class="os-krok"><svg class="os-linia" aria-hidden="true" focusable="false"><line class="os-tor os-pion" x1="50%" y1="0" x2="50%" y2="100%"/><line class="os-postep os-pion kr" pathLength="1" x1="50%" y1="0" x2="50%" y2="100%"/></svg><strong>Wniosek o&nbsp;zatwierdzenie układu</strong> - musi trafić do sądu w&nbsp;ciągu 4&nbsp;miesięcy od obwieszczenia.</li>
+      <li class="os-krok"><strong>Zatwierdzenie układu i&nbsp;jego wykonanie</strong> - sąd ocenia układ, potem firma spłaca zobowiązania według ustalonych warunków.</li>
+    </ol>
+    <p class="meta uwaga">Przykład dla podstrony „Postępowanie o&nbsp;zatwierdzenie układu”. Projekt treści do weryfikacji przez doradcę.</p>
+  </div>
+</section>
+
+</main>
+
+<div class="fragment fragment-stopka" id="f10">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 10 - Stopka</p>
+  </div>
+  <footer class="stopka">
+    <div class="kol-danych">
+      <address>
+        <span class="stopka-nazwa">[Nazwa kancelarii]</span>
+        <span>[adres kancelarii]</span>
+        <span>[+48&nbsp;000&nbsp;000&nbsp;000]</span>
+        <span>[adres@domena.pl]</span>
+      </address>
+      <nav aria-label="Stopka">
+        <ul class="stopka-linki">
+          <li><a href="#f2">Strona główna</a></li>
+          <li><a href="#">O&nbsp;kancelarii</a></li>
+          <li><a href="#f3">Restrukturyzacja</a></li>
+          <li><a href="#f3">Upadłość</a></li>
+          <li><a href="#f3">Dla wierzycieli</a></li>
+          <li><a href="#f6">Postępowania</a></li>
+          <li><a href="#f8">Wiedza</a></li>
+          <li><a href="#f9">Kontakt</a></li>
+        </ul>
+        <ul class="stopka-linki">
+          <li><a href="#">Polityka prywatności</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</div>
+
+<aside class="fragment" id="f11" aria-labelledby="h-f11">
+  <div class="kol-danych">
+    <p class="etykieta-planszy">Fragment 11 - Próbka kroju (meta planszy)</p>
+    <h2 id="h-f11" class="sr-only">Próbka kroju</h2>
+
+    <div class="probka kroj-tresc">
+      <p class="probka-nazwa">Source Serif 4 · 400</p>
+      <div class="probka-wiersz"><span class="probka-rozmiar">56</span><div class="r56"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">44</span><div class="r44"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">32</span><div class="r32"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">26</span><div class="r26"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">24</span><div class="r24"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">22</span><div class="r22"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">21</span><div class="r21"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">20</span><div class="r20"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">19</span><div class="r19"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">18</span><div class="r18"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">17</span><div class="r17"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">16</span><div class="r16"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">15</span><div class="r15"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">13</span><div class="r13"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+    </div>
+
+    <div class="probka kroj-ui">
+      <p class="probka-nazwa">IBM Plex Sans · 400</p>
+      <div class="probka-wiersz"><span class="probka-rozmiar">56</span><div class="r56"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">44</span><div class="r44"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">32</span><div class="r32"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">26</span><div class="r26"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">24</span><div class="r24"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">22</span><div class="r22"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">21</span><div class="r21"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">20</span><div class="r20"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">19</span><div class="r19"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">18</span><div class="r18"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">17</span><div class="r17"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">16</span><div class="r16"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">15</span><div class="r15"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+      <div class="probka-wiersz"><span class="probka-rozmiar">13</span><div class="r13"><p>Zażółć gęślą jaźń. ZAŻÓŁĆ GĘŚLĄ JAŹŃ.</p><p class="dane-probki">WR1W/GRz/123/2026 · 1&nbsp;250&nbsp;000,00&nbsp;zł · 05.11.2026, godz.&nbsp;10:00</p></div></div>
+    </div>
+  </div>
+</aside>
+
+<script>
+(function () {
+  var d = document;
+
+  var naglowek = d.querySelector('.naglowek');
+  var menu = d.querySelector('.przycisk-menu');
+  menu.addEventListener('click', function () {
+    var otworz = menu.getAttribute('aria-expanded') !== 'true';
+    menu.setAttribute('aria-expanded', String(otworz));
+    naglowek.classList.toggle('otwarte', otworz);
+  });
+
+  var podmenu = [].slice.call(d.querySelectorAll('.ma-podmenu > button'));
+  function ustaw(b, otwarte) {
+    b.setAttribute('aria-expanded', String(otwarte));
+    d.getElementById(b.getAttribute('aria-controls')).hidden = !otwarte;
+  }
+  // Podmenu jest widoczne w HTML (działa bez JS), zwija je dopiero skrypt
+  podmenu.forEach(function (b) { ustaw(b, false); });
+  podmenu.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var otworz = b.getAttribute('aria-expanded') !== 'true';
+      podmenu.forEach(function (x) { if (x !== b) ustaw(x, false); });
+      ustaw(b, otworz);
+    });
+  });
+  d.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    podmenu.forEach(function (b) {
+      if (b.getAttribute('aria-expanded') === 'true') { ustaw(b, false); b.focus(); }
+    });
+  });
+  d.addEventListener('click', function (e) {
+    podmenu.forEach(function (b) {
+      if (b.getAttribute('aria-expanded') === 'true' && !b.parentNode.contains(e.target)) ustaw(b, false);
+    });
+  });
+
+  // Wyszukiwarka i filtr rodzaju postępowania: zawężanie w trakcie pisania
+  // (od 2 znaków, 150 ms), sygnatura bez rozróżniania wielkości liter, spacji i "/"
+  var filtry = d.querySelector('.filtry');
+  var licznik = d.querySelector('.licznik');
+  var wiersze = [].slice.call(d.querySelectorAll('.postepowania tbody tr'));
+  function norm(s) { return s.toLowerCase().replace(/[\s\/]+/g, ''); }
+  function odmiana(n) {
+    if (n === 1) return 'postępowanie';
+    var j = n % 10, s = n % 100;
+    return (j >= 2 && j <= 4 && (s < 12 || s > 14)) ? 'postępowania' : 'postępowań';
+  }
+  function filtruj() {
+    var q = norm(filtry.elements.q.value);
+    if (q.length < 2) q = '';
+    var rodzaj = filtry.elements.rodzaj.value;
+    var n = 0;
+    wiersze.forEach(function (w) {
+      var tekst = norm(w.querySelector('.dluznik').textContent + ' ' + w.querySelector('.sygn').textContent);
+      var widac = (!q || tekst.indexOf(q) !== -1) &&
+        (rodzaj === 'wszystkie' || w.getAttribute('data-rodzaj') === rodzaj);
+      w.hidden = !widac;
+      if (widac) n++;
+    });
+    var opis = n + ' ' + odmiana(n);
+    if (licznik.textContent !== opis) licznik.textContent = opis;
+  }
+  var zwloka;
+  filtry.addEventListener('input', function (e) {
+    clearTimeout(zwloka);
+    zwloka = setTimeout(filtruj, e.target.type === 'search' ? 150 : 0);
+  });
+  filtry.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearTimeout(zwloka);
+    filtruj();
+  });
+})();
+</script>
+</body>
+</html>
